@@ -373,6 +373,21 @@ namespace ledger {
                             {}
                     );
                     return CLUBCOIN;
+                  } else if (networkName == "lbry") {
+                      static const api::BitcoinLikeNetworkParameters LBRY(
+                              "lbc",
+                              {0x55},
+                              {0x7A},
+                              {0x01, 0x9C, 0x35, 0x4F},
+                              api::BitcoinLikeFeePolicy::PER_BYTE,
+                              10000,
+                              "LBRYcrd Signed Message:\n",
+                              false,
+                              0,
+                              {sigHashType::SIGHASH_ALL},
+                              {}
+                      );
+                      return LBRY;
                 }
 
                 throw make_exception(api::ErrorCode::INVALID_ARGUMENT, "No network parameters set for {}", networkName);
@@ -400,7 +415,8 @@ namespace ledger {
                 getNetworkParameters("komodo"),
                 getNetworkParameters("poswallet"),
                 getNetworkParameters("pivx"),
-                getNetworkParameters("clubcoin")
+                getNetworkParameters("clubcoin"),
+                getNetworkParameters("lbry")
             });
         }
     }
